@@ -7,20 +7,20 @@ import news from '../api/news';
 export default function NewsList() {
 
     const [newsList, setnewsList] = React.useState([]);
-    const [text, onChangeText] = React.useState("");
+    const [tempNewsList, setTempNewsList] = React.useState([]);
+   
 
     useEffect(() => {
 
         news.getNewsList().then((data)=>{
           console.log(data.data!.data);
           setnewsList(data.data!.data);
+          setTempNewsList(data.data!.data);
           
         });
    
        
-       return () => {
-         
-       }
+      
      }, [])
 
     
@@ -29,26 +29,30 @@ export default function NewsList() {
         
         return (
         
-            <NewsItem   item={item}  />
+            <NewsItem   item={item} />
           );
         };
 
        
-          
+       const searchFilterFunction = (text:string) => {     
+
+              let filteredNews = tempNewsList.filter((item:any) => {
+                return item.title.toLowerCase().match(text);
+              });
+              console.log(filteredNews);
+              setnewsList(filteredNews);
+
+          };  
         
           
-         
-
-   
-
     return (
 
         <ScrollView style={styles.container}>
             <TextInput 
              style={styles.input}
-             onChangeText={onChangeText}
+             onChangeText={ (text) =>searchFilterFunction(text)}
              placeholder="Search"
-             value={text}
+            //  value={text}
              />
 
             <FlatList
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
         height: 40,
         margin: 12,
         borderWidth: 1,
-        borderRadius: 2,
+        borderRadius: 7,
         borderColor: '#ddd',
         borderBottomWidth: 0,
         shadowColor: '#000',
