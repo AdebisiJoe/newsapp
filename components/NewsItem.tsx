@@ -12,11 +12,22 @@ export default function NewsItem({item}:any) {
           <Card>
             <CardSection>
             <View style={Styles.thumbnailContainerStyle}>
-                <Image 
-                style={Styles.thumbnailStyle}
-                source={{ uri: image}} 
-                
-                /> 
+
+                {image ?
+                  
+                    <Image 
+                    style={Styles.thumbnailStyle}
+                    source={{ uri: image}} 
+                    
+                    /> 
+                :
+                    <Image 
+                    style={Styles.thumbnailStyle}
+                    source={require('../assets/images/newspaper.png')} 
+                    
+                    /> 
+                }
+
             </View>  
             <View style={Styles.headerContentStyle} >
                 <Text style={Styles.headerTextStyle} >{title}</Text>
