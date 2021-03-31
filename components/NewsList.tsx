@@ -31,7 +31,11 @@ export default function NewsList() {
       }
     return (
         <ScrollView>
-            
+            { newsList.map((newsitem:any) =>
+     
+               <NewsItem key={newsitem.title}  item={newsitem}  />
+    
+            )}
         </ScrollView>
     )
 }

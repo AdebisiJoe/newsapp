@@ -6,10 +6,25 @@ import CardSection from './CardSection';
 
 export default function NewsItem({item}:any) {
 
-    const { title, image, url } =item;
+    const { title, image, url,author,source } =item;
     return (
      <View>
-         
+          <Card>
+            <CardSection>
+            <View style={Styles.thumbnailContainerStyle}>
+                <Image 
+                style={Styles.thumbnailStyle}
+                source={{ uri: image}} 
+                
+                /> 
+            </View>  
+            <View style={Styles.headerContentStyle} >
+                <Text style={Styles.headerTextStyle} >{title}</Text>
+                <Text >{source}</Text>
+            </View>
+            
+            </CardSection>
+        </Card>
      </View>
     )
 }

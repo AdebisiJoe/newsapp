@@ -1,7 +1,7 @@
 import client from './client';
 const ACCESS_KEY='56353d59ca0e100b2e6273cc279fbd6c';
 
-const endpoint=`/news?access_key=${ACCESS_KEY}&limit=20&sources=cnn,bbc`;
+const endpoint=`/news?access_key=${ACCESS_KEY}&limit=100&sources=cnn,bbc`;
 
 const getNewsList = () =>client.get(endpoint);
 
