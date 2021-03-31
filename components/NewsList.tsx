@@ -54,7 +54,7 @@ export default function NewsList() {
             <FlatList
                 data={newsList}
                 renderItem={renderNewsItem}
-                keyExtractor={(item:any) => item.url}
+                keyExtractor={(item, index) => index.toString()}
             />
         </ScrollView>
     )
