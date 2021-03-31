@@ -1,10 +1,25 @@
-import * as React from 'react';
+import  React,{useEffect} from 'react';
 import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
+import news from '../api/news';
+
 export default function TabOneScreen() {
+
+  useEffect(() => {
+
+     news.getNewsList().then((data)=>{
+       console.log(data.data!.data);
+     });
+
+    
+    return () => {
+      
+    }
+  }, [])
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>
