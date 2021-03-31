@@ -1,11 +1,13 @@
 import React,{useEffect} from 'react';
-import { View,StyleSheet,ScrollView,Text } from 'react-native';
+import { View,StyleSheet,ScrollView,Text,TextInput,FlatList,SafeAreaView,TouchableOpacity } from 'react-native';
 import NewsItem from './NewsItem';
 
 import news from '../api/news';
+
 export default function NewsList() {
 
     const [newsList, setnewsList] = React.useState([]);
+    const [text, onChangeText] = React.useState("");
 
     useEffect(() => {
 
@@ -21,22 +23,34 @@ export default function NewsList() {
        }
      }, [])
 
-     const renderNewsList=()=> {
-        return newsList.map((newsitem:any) =>
-     
-
-           <NewsItem key={newsitem.title}  item={newsitem}  />
-        
-        );
-      }
-    return (
-        <ScrollView>
-            { newsList.map((newsitem:any) =>
-     
-               <NewsItem key={newsitem.title}  item={newsitem}  />
     
-            )}
-        </ScrollView>
+
+      const renderNewsItem = ({item}:any) => {
+        
+        return (
+        
+            <NewsItem key={item.title}  item={item}  />
+          );
+        };
+
+       
+          
+        
+          
+         
+
+   
+
+    return (
+
+        <SafeAreaView style={styles.container}>
+            <FlatList
+                data={newsList}
+                renderItem={renderNewsItem}
+                keyExtractor={(item:any) => item.url}
+            // extraData={selectedId}
+            />
+        </SafeAreaView>
     )
 }
 
@@ -52,4 +66,23 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 32,
     },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        borderRadius: 2,
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2},
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 1,
+        marginLeft: 10,
+        marginRight: 10,
+        marginTop: 10
+      },
   });
+
+
+ 

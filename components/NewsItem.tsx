@@ -4,17 +4,18 @@ import Card from './Card';
 import CardSection from './CardSection';
 
 
-export default function NewsItem({item}:any) {
+
+export default function NewsItem({item}:any,onPress:any) {
 
     const { title, image, url,author,source } =item;
     return (
-     <View>
-          <Card>
+     <View >
+          <Card onPress={onPress}>
             <CardSection>
             <View style={Styles.thumbnailContainerStyle}>
 
                 {image ?
-                  
+
                     <Image 
                     style={Styles.thumbnailStyle}
                     source={{ uri: image}} 
@@ -44,10 +45,12 @@ export default function NewsItem({item}:any) {
 const Styles = StyleSheet.create({
     headerContentStyle : {
         flexDirection : 'column',
-        justifyContent: 'space-around'
+        // justifyContent: 'space-around',
+        justifyContent:'flex-start'
  
      },
      headerTextStyle : {
+        flexDirection : 'column',
         fontSize : 18 
      },
      thumbnailStyle: {
