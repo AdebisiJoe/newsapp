@@ -29,7 +29,7 @@ export default function NewsList() {
         
         return (
         
-            <NewsItem key={item.title}  item={item}  />
+            <NewsItem   item={item}  />
           );
         };
 
@@ -43,20 +43,27 @@ export default function NewsList() {
 
     return (
 
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
+            <TextInput 
+             style={styles.input}
+             onChangeText={onChangeText}
+             placeholder="Search"
+             value={text}
+             />
+
             <FlatList
                 data={newsList}
                 renderItem={renderNewsItem}
                 keyExtractor={(item:any) => item.url}
-            // extraData={selectedId}
             />
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor:'#fff'
     },
     item: {
       padding: 20,

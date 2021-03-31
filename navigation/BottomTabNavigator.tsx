@@ -1,6 +1,7 @@
 import { Ionicons,MaterialIcons,FontAwesome5  } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator,HeaderBackButton } from '@react-navigation/stack';
+
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
@@ -15,6 +16,8 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+
+ 
 
   return (
     <BottomTab.Navigator
@@ -72,6 +75,8 @@ function TabBarIcon3(props: { name: React.ComponentProps<typeof FontAwesome5>['n
   return <FontAwesome5 size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
+
+
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const TabOneStack = createStackNavigator<TabOneParamList>();
@@ -90,13 +95,27 @@ function TabOneNavigator() {
 
 const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
-function TabTwoNavigator() {
+function TabTwoNavigator({navigation}:any) {
+
+  const goBack = (): void => {
+    navigation && navigation.goBack();
+    
+  };
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
         name="NewsListScreen"
         component={NewsList}
-        options={{ headerTitle: 'NewsList' }}
+        options={{ 
+          headerTitle: 'NewsList', 
+          headerLeft: (props) => (
+          <HeaderBackButton
+            {...props}
+            onPress={() => {
+              goBack()
+            }}
+          /> )
+        }}
       />
     </TabTwoStack.Navigator>
   );
