@@ -45,13 +45,15 @@ export default function NewsItem({item}:any,onPress:any) {
 const Styles = StyleSheet.create({
     headerContentStyle : {
         flexDirection : 'column',
-        // justifyContent: 'space-around',
-        justifyContent:'flex-start'
+        
+        justifyContent:'flex-start',
+        flexShrink:1
  
      },
      headerTextStyle : {
         flexDirection : 'column',
-        fontSize : 18 
+        fontSize : 18 ,
+        
      },
      thumbnailStyle: {
         height : 50,
